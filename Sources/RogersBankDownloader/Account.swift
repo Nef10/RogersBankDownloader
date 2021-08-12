@@ -3,6 +3,7 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// A credit card account
 public struct Account: Codable {
 
     private static let dateFormatter: DateFormatter = {
