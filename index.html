@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RogersBankDownloader  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+
+    <a title="RogersBankDownloader  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          RogersBankDownloader Docs
+        </a>
+         (98% documented)
+      </p>
+    
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Nef10/RogersBankDownloader">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2FNef10.github.io%2FRogersBankDownloader%2Fdocsets%2FRogersBankDownloader.xml">
+            <img class="header-icon" src="img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">RogersBankDownloader Reference</a>
+      <img class="carat" src="img/carat.png" />
+      RogersBankDownloader  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ActivityCategory.html">ActivityCategory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ActivityStatus.html">ActivityStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ActivityType.html">ActivityType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/DownloadError.html">DownloadError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Activity.html">Activity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Amount.html">Amount</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Customer.html">Customer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ForeignCurrency.html">ForeignCurrency</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Merchant.html">Merchant</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='rogersbankdownloader' class='heading'>RogersBankDownloader</h1>
+
+<p><a href="https://github.com/Nef10/RogersBankDownloader/actions?query=workflow%3A%22CI%22"><img src="https://github.com/Nef10/RogersBankDownloader/workflows/CI/badge.svg?event=push" alt="CI Status"></a> <a href="https://nef10.github.io/RogersBankDownloader/"><img src="https://nef10.github.io/RogersBankDownloader/badge.svg" alt="Documentation percentage"></a> <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Nef10/RogersBankDownloader" alt="License: MIT"></a> <a href="https://github.com/Nef10/RogersBankDownloader/releases"><img src="https://img.shields.io/github/v/release/Nef10/RogersBankDownloader?label=SemVer&sort=semver" alt="Latest version"></a> <img src="https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-blue" alt="platforms supported: linux | macOS | iOS | watchOS | tvOS"> <img src="https://img.shields.io/badge/SPM-compatible-blue" alt="SPM compatible"></p>
+<h2 id='what' class='heading'>What</h2>
+
+<p>This is a small library to download transaction data for Rogers Bank Credit Cards. To authenticate it currently uses requires the <code>deviceId</code> and <code>deviceInfo</code> from a trusted device to skip the 2FA.</p>
+<h2 id='how' class='heading'>How</h2>
+
+<p>1) Obtain a deviceId with the matching deviceInfo by logging into the website and having a look at the network tab in the developer tools
+2) Call <code>User.load(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x%7C6d27c0a5956595089e7131a4ee9d7a5d&quot;, deviceInfo: &quot;x&quot;)</code>
+3) In the completion handler check that the login was successful: <code>if case let .success(user) = $0 {</code>
+4) <code>user</code> now contains the logged in user, which contains the accounts - these already contain info about the current balance, last statement amount, among other information
+5) If you want to download the transactions, e.g. call <code>user.accounts[0].downloadActivities(statementNumber: 0)</code> - if you have more than one account change the index accordingly - the <code>statementNumber</code> parameter indicates which statement period to download the transactions from, with 0 meaning the current period, 1 the last statement and so on.</p>
+
+<p>Please also check out the complete documentation <a href="https://nef10.github.io/RogersBankDownloader/">here</a>.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>The library supports the Swift Package Manger, so simply add a dependency in your <code>Package.swift</code>:</p>
+<pre class="highlight plaintext"><code>.package(url: "https://github.com/Nef10/RogersBankDownloader.git", .exact(from: "0.0.1")),
+</code></pre>
+
+<p>Please note that following semantic versioning every release before version 1.0.0 might be breaking, so use <code>.exact</code> for now.</p>
+<h2 id='limitations' class='heading'>Limitations</h2>
+
+<p>Please note that I developed this library for my own needs. As there is no offical API everything was reverse engineered and there may be a lot of bugs.</p>
+
+<p>Pull requests to fix bugs are otherwise enhance the library are very welcome.</p>
+<h2 id='copyright' class='heading'>Copyright</h2>
+
+<p>While my code is licensed under the <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/LICENSE">MIT License</a>, the source repository may include names or other trademarks of Rogers, Rogers Bank or other entities; potential usage restrictions for these elements still apply and are not touched by the software license. Same applies for the API design. I am in no way affilliated with Rogers Bank other than beeing customer.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://github.com/Nef10" target="_blank" rel="external">Nef10</a>. All rights reserved. (Last updated: 2021-08-12)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
