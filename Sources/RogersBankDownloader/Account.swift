@@ -67,7 +67,7 @@ public struct Account: Codable {
     /// - Parameters:
     ///   - statementNumber: number of the statement for which the transactions should be downloaded, with 0 mean current period, 1 means last statement, ...
     ///   - completion: completion handler, called with either the Transactions or a DownloadError
-    func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
+    public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
         guard statementNumber >= 0 && cycleDates.count >= statementNumber else {
             completion(.failure(DownloadError.invalidStatementNumber(statementNumber)))
             return
