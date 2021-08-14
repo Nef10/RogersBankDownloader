@@ -73,7 +73,7 @@ public struct Account: Codable {
             return
         }
         var urlComponents = activityURLComponents
-        if statementNumber > 1 {
+        if statementNumber > 0 {
             urlComponents.queryItems = [URLQueryItem(name: "cycleStartDate", value: Self.dateFormatter.string(from: cycleDates[statementNumber - 1]))]
         }
         var request = URLRequest(url: urlComponents.url!)
