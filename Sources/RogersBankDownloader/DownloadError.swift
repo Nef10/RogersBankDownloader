@@ -1,3 +1,5 @@
+import Foundation
+
 /// Errors which can happen when getting a Token
 public enum DownloadError: Error {
     /// When the received data is not valid JSON
@@ -10,4 +12,21 @@ public enum DownloadError: Error {
     case noDataReceived
     /// When trying to download transactions from a non existing statement
     case invalidStatementNumber(_ number: Int)
+}
+
+extension DownloadError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case let .invalidJson(error):
+            return "The server response contained invalid JSON: \(error)"
+        case let .invalidParameters(parameters):
+            return "The give parameters could not be converted to JSON: \(parameters)"
+        case let .httpError(error):
+            return "An HTTP error occurred: \(error)"
+        case .noDataReceived:
+            return "No data was received from the server"
+        case let .invalidStatementNumber(number):
+            return "\(number) is not a valid statement number to download"
+        }
+    }
 }
