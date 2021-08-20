@@ -47,7 +47,7 @@ public struct Account: Codable {
     /// Credit limit
     public let creditLimit: Amount
     /// Amount charged since the last statement
-    public let purchasesSinceLastCycle: Amount
+    public let purchasesSinceLastCycle: Amount?
     /// Amount of the last payment
     public let lastPayment: Amount
     /// Remaining credit limit
@@ -100,7 +100,7 @@ public struct Account: Codable {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(Self.dateFormatter)
                 let activities = try decoder.decode(Activities.self, from: data)
-                completion(.success(activities.activities))
+                completion(.success(activities.activities ?? []))
             } catch {
                 completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
                 return

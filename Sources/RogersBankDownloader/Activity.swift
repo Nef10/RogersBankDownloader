@@ -15,7 +15,7 @@ public struct Customer: Codable {
 }
 
 struct Activities: Codable {
-    let activities: [Activity]
+    let activities: [Activity]? // swiftlint:disable:this discouraged_optional_collection
 }
 
 /// Merchant
