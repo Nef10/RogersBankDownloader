@@ -63,6 +63,81 @@ public struct Account: Codable {
         URLComponents(string: "https://rbaccess.rogersbank.com/issuing/digital/account/\(accountId)/customer/\(customer.customerId)/activity")!
     }
 
+    private var statementSearchURL: URL {
+        URL(string: "https://rbaccess.rogersbank.com/issuing/digital/account/\(accountId)/customer/\(customer.customerId)/estatement/search")!
+    }
+
+    private func statementDownloadURL(statement: Statement) -> URL {
+        URL(string: "https://rbaccess.rogersbank.com/issuing/digital/account/\(accountId)/customer/\(customer.customerId)/estatement/\(statement.statementId)/view")!
+    }
+
+    /// Download a statement
+    /// - Parameters:
+    ///   - statement: the statement to download
+    ///   - completion: completion handler, called with either a temporary URL to the downloaded file or a DownloadError
+    public func downloadStatement(statement: Statement, completion: @escaping (Result<URL, DownloadError>) -> Void) {
+        var request = URLRequest(url: statementDownloadURL(statement: statement))
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.downloadTask(with: request) { url, response, error in
+            guard let url = url else {
+                if let error = error {
+                    completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
+                } else {
+                    completion(.failure(DownloadError.noDataReceived))
+                }
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(DownloadError.httpError(error: "No HTTPURLResponse")))
+                return
+            }
+            guard httpResponse.statusCode == 200 else {
+                completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                return
+            }
+            completion(.success(url))
+        }
+        task.resume()
+    }
+
+    /// Search Statements
+    /// - Parameters:
+    ///   - completion: completion handler, called with either the Statements or a DownloadError
+    public func searchStatements(completion: @escaping (Result<[Statement], DownloadError>) -> Void) {
+        var request = URLRequest(url: statementSearchURL)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
+                } else {
+                    completion(.failure(DownloadError.noDataReceived))
+                }
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(DownloadError.httpError(error: "No HTTPURLResponse")))
+                return
+            }
+            guard httpResponse.statusCode == 200 else {
+                completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(Self.dateFormatter)
+                let statements = try decoder.decode(Statements.self, from: data)
+                completion(.success(statements.monthlyStatements))
+            } catch {
+                completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
+                return
+            }
+        }
+        task.resume()
+    }
+
     /// Downloads the transactions
     /// - Parameters:
     ///   - statementNumber: number of the statement for which the transactions should be downloaded, with 0 mean current period, 1 means last statement, ...
