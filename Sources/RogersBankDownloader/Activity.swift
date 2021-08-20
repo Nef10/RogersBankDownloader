@@ -88,6 +88,8 @@ public enum ActivityCategory: String, Codable {
     case payment = "PAYMENT"
     /// A pre authorization for a purchase
     case tokenAuthRequest = "Token Auth Request"
+    /// An authorization for an mail or phone order
+    case mailOrPhoneOrder = "Mail or Phone Order"
 }
 
 /// An activity on the credit card, like a authorization, transactions or payment
