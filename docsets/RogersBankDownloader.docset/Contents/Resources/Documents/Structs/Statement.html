@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Merchant Structure Reference</title>
+    <title>Statement Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/Merchant" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/Statement" class="dashAnchor"></a>
 
-    <a title="Merchant Structure Reference"></a>
+    <a title="Statement Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -42,7 +42,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RogersBankDownloader Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Merchant Structure Reference
+      Statement Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -103,18 +103,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Merchant</h1>
+            <h1>Statement</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Merchant</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Statement</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                 </div>
               </div>
-            <p>Merchant</p>
+            <p>A Statement</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L22-L33">Show on GitHub</a>
+                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L10-L21">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -126,9 +126,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader8MerchantV4nameSSvp"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader8MerchantV4nameSSvp">name</a>
+                    <a name="/s:20RogersBankDownloader9StatementV13statementTypeSSvp"></a>
+                    <a name="//apple_ref/swift/Property/statementType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader9StatementV13statementTypeSSvp">statementType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -136,19 +136,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Name</p>
+                        <p>Type, e.g. monthly</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">statementType</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L24">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L12">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -156,9 +156,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader8MerchantV12categoryCodeSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/categoryCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader8MerchantV12categoryCodeSSSgvp">categoryCode</a>
+                    <a name="/s:20RogersBankDownloader9StatementV11statementIdSSvp"></a>
+                    <a name="//apple_ref/swift/Property/statementId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader9StatementV11statementIdSSvp">statementId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -166,19 +166,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>4 digit Merchant Category Code from the payment netrowk</p>
+                        <p>ID of the statement</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">categoryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">statementId</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L26">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L14">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -186,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader8MerchantV19categoryDescriptionSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/categoryDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader8MerchantV19categoryDescriptionSSSgvp">categoryDescription</a>
+                    <a name="/s:20RogersBankDownloader9StatementV13statementDate10Foundation0F0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/statementDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader9StatementV13statementDate10Foundation0F0Vvp">statementDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -196,19 +196,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Description for the Merchant Category from the payment netrowk</p>
+                        <p>Date the statement was generated</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">categoryDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">statementDate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L28">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L16">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -216,9 +216,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader8MerchantV8categorySSvp"></a>
-                    <a name="//apple_ref/swift/Property/category" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader8MerchantV8categorySSvp">category</a>
+                    <a name="/s:20RogersBankDownloader9StatementV9cycleDate10Foundation0F0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/cycleDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader9StatementV9cycleDate10Foundation0F0Vvp">cycleDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,19 +226,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Broad category name, used for the icons on the site</p>
+                        <p>Date the statement cycle ended</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">category</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cycleDate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L30">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L18">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -246,9 +246,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader8MerchantV7addressAA7AddressVSgvp"></a>
-                    <a name="//apple_ref/swift/Property/address" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader8MerchantV7addressAA7AddressVSgvp">address</a>
+                    <a name="/s:20RogersBankDownloader9StatementV9cardLast4SSvp"></a>
+                    <a name="//apple_ref/swift/Property/cardLast4" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader9StatementV9cardLast4SSvp">cardLast4</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -256,19 +256,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Address of the merchant</p>
+                        <p>Last 4 digits of the credit card number</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">address</span><span class="p">:</span> <span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cardLast4</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Activity.swift#L32">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/Statement.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

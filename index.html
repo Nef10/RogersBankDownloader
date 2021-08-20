@@ -89,6 +89,9 @@
                 <a class="nav-group-task-link" href="Structs/Merchant.html">Merchant</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Statement.html">Statement</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/User.html">User</a>
               </li>
             </ul>
@@ -109,7 +112,7 @@
 <h2 id='how' class='heading'>How</h2>
 
 <p>1) Obtain a deviceId with the matching deviceInfo by logging into the website and having a look at the network tab in the developer tools
-2) Call <code>User.load(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x%7C6d27c0a5956595089e7131a4ee9d7a5d&quot;, deviceInfo: &quot;x&quot;)</code>
+2) Call <code>User.load(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x&quot;, deviceInfo: &quot;x&quot;)</code>
 3) In the completion handler check that the login was successful: <code>if case let .success(user) = $0 {</code>
 4) <code>user</code> now contains the logged in user, which contains the accounts - these already contain info about the current balance, last statement amount, among other information
 5) If you want to download the transactions, e.g. call <code>user.accounts[0].downloadActivities(statementNumber: 0)</code> - if you have more than one account change the index accordingly - the <code>statementNumber</code> parameter indicates which statement period to download the transactions from, with 0 meaning the current period, 1 the last statement and so on.</p>
@@ -118,7 +121,7 @@
 <h2 id='usage' class='heading'>Usage</h2>
 
 <p>The library supports the Swift Package Manger, so simply add a dependency in your <code>Package.swift</code>:</p>
-<pre class="highlight plaintext"><code>.package(url: "https://github.com/Nef10/RogersBankDownloader.git", .exact(from: "0.0.3")),
+<pre class="highlight plaintext"><code>.package(url: "https://github.com/Nef10/RogersBankDownloader.git", .exact(from: "0.0.4")),
 </code></pre>
 
 <p>Please note that following semantic versioning every release before version 1.0.0 might be breaking, so use <code>.exact</code> for now.</p>
