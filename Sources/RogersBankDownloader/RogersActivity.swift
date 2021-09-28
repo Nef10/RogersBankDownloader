@@ -18,9 +18,9 @@ public protocol Customer {
 public protocol Merchant {
     /// Name
     var name: String { get }
-    /// 4 digit Merchant Category Code from the payment netrowk
+    /// 4 digit Merchant Category Code from the payment network
     var categoryCode: String? { get }
-    /// Description for the Merchant Category from the payment netrowk
+    /// Description for the Merchant Category from the payment network
     var categoryDescription: String? { get }
     /// Broad category name, used for the icons on the site
     var category: String { get }
