@@ -4,7 +4,99 @@ import FoundationNetworking
 #endif
 
 /// A credit card account
-public struct Account: Codable {
+public protocol Account {
+    /// Customer
+    var customer: Customer { get }
+    /// Internal ID
+    var accountId: String { get }
+    /// Account type, e.g. Personal
+    var accountType: String { get }
+    /// Payment status, e.g. Paid
+    var paymentStatus: String { get }
+    /// Product Name, e.g. World Elite
+    var productName: String { get }
+    /// Code for product
+    var productExternalCode: String { get }
+    /// ISO symbol of account currency
+    var accountCurrency: String { get }
+    /// Brand name, e.g. ROGERSBRAND
+    var brandId: String { get }
+    /// Date the Account was opend
+    var openedDate: Date { get }
+    /// Date of the last statement
+    var previousStatementDate: Date { get }
+    /// Date the payment of the current statement is due (might be in the past)
+    var paymentDueDate: Date { get }
+    /// Date of the last payment
+    var lastPaymentDate: Date { get }
+    /// List of past statement dates
+    var cycleDates: [Date] { get }
+    /// Current balance
+    var currentBalance: Amount { get }
+    /// Balance on the last Statement
+    var statementBalance: Amount { get }
+    /// Amount which is still due for the statement
+    var statementDueAmount: Amount { get }
+    /// Credit limit
+    var creditLimit: Amount { get }
+    /// Amount charged since the last statement
+    var purchasesSinceLastCycle: Amount? { get }
+    /// Amount of the last payment
+    var lastPayment: Amount { get }
+    /// Remaining credit limit
+    var realtimeBalance: Amount { get }
+    /// Cash Advance available
+    var cashAvailable: Amount { get }
+    /// Cash Advance limit
+    var cashLimit: Amount { get }
+    /// Multi Card
+    var multiCard: Bool { get }
+
+    /// Download a statement
+    /// - Parameters:
+    ///   - statement: the statement to download
+    ///   - completion: completion handler, called with either a temporary URL to the downloaded file or a DownloadError
+    func downloadStatement(statement: Statement, completion: @escaping (Result<URL, DownloadError>) -> Void)
+
+    /// Search Statements
+    /// - Parameters:
+    ///   - completion: completion handler, called with either the Statements or a DownloadError
+    func searchStatements(completion: @escaping (Result<[Statement], DownloadError>) -> Void)
+
+    /// Downloads the transactions
+    /// - Parameters:
+    ///   - statementNumber: number of the statement for which the transactions should be downloaded, with 0 mean current period, 1 means last statement, ...
+    ///   - completion: completion handler, called with either the Transactions or a DownloadError
+    func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void)
+}
+
+public struct RogersAccount: Account, Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case accountId
+        case accountType
+        case paymentStatus
+        case productName
+        case productExternalCode
+        case accountCurrency
+        case brandId
+        case openedDate
+        case previousStatementDate
+        case paymentDueDate
+        case lastPaymentDate
+        case cycleDates
+        case multiCard
+        case rogersCurrentBalance = "currentBalance"
+        case rogersStatementBalance = "statementBalance"
+        case rogersStatementDueAmount = "statementDueAmount"
+        case rogersCreditLimit = "creditLimit"
+        case rogersPurchasesSinceLastCycle = "purchasesSinceLastCycle"
+        case rogersLastPayment = "lastPayment"
+        case rogersRealtimeBalance = "realtimeBalance"
+        case rogersCashAvailable = "cashAvailable"
+        case rogersCashLimit = "cashLimit"
+        case rogersCustomer = "customer"
+    }
 
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -12,52 +104,61 @@ public struct Account: Codable {
         return dateFormatter
     }()
 
-    /// Customer
-    public let customer: Customer
-    /// Internal ID
     public let accountId: String
-    /// Account type, e.g. Personal
     public let accountType: String
-    /// Payment status, e.g. Paid
     public let paymentStatus: String
-    /// Product Name, e.g. World Elite
     public let productName: String
-    /// Code for product
     public let productExternalCode: String
-    /// ISO symbol of account currency
     public let accountCurrency: String
-    /// Brand name, e.g. ROGERSBRAND
     public let brandId: String
-    /// Date the Account was opend
     public let openedDate: Date
-    /// Date of the last statement
     public let previousStatementDate: Date
-    /// Date the payment of the current statement is due (might be in the past)
     public let paymentDueDate: Date
-    /// Date of the last payment
     public let lastPaymentDate: Date
-    /// List of past statement dates
     public let cycleDates: [Date]
-    /// Current balance
-    public let currentBalance: Amount
-    /// Balance on the last Statement
-    public let statementBalance: Amount
-    /// Amount which is still due for the statement
-    public let statementDueAmount: Amount
-    /// Credit limit
-    public let creditLimit: Amount
-    /// Amount charged since the last statement
-    public let purchasesSinceLastCycle: Amount?
-    /// Amount of the last payment
-    public let lastPayment: Amount
-    /// Remaining credit limit
-    public let realtimeBalance: Amount
-    /// Cash Advance available
-    public let cashAvailable: Amount
-    /// Cash Advance limit
-    public let cashLimit: Amount
-    /// Multi Card
     public let multiCard: Bool
+    private let rogersStatementBalance: RogersAmount
+    private let rogersCurrentBalance: RogersAmount
+    private let rogersStatementDueAmount: RogersAmount
+    private let rogersCreditLimit: RogersAmount
+    private let rogersPurchasesSinceLastCycle: RogersAmount?
+    private let rogersLastPayment: RogersAmount
+    private let rogersRealtimeBalance: RogersAmount
+    private let rogersCashAvailable: RogersAmount
+    private let rogersCashLimit: RogersAmount
+    private let rogersCustomer: RogersCustomer
+
+    public var customer: Customer {
+        rogersCustomer
+    }
+
+    public var statementBalance: Amount {
+        rogersStatementBalance
+    }
+    public var currentBalance: Amount {
+        rogersCurrentBalance
+    }
+    public var statementDueAmount: Amount {
+        rogersStatementDueAmount
+    }
+    public var creditLimit: Amount {
+        rogersCreditLimit
+    }
+    public var purchasesSinceLastCycle: Amount? {
+        rogersPurchasesSinceLastCycle
+    }
+    public var lastPayment: Amount {
+        rogersLastPayment
+    }
+    public var realtimeBalance: Amount {
+        rogersRealtimeBalance
+    }
+    public var cashLimit: Amount {
+        rogersCashLimit
+    }
+    public var cashAvailable: Amount {
+        rogersCashAvailable
+    }
 
     private var activityURLComponents: URLComponents {
         URLComponents(string: "https://rbaccess.rogersbank.com/issuing/digital/account/\(accountId)/customer/\(customer.customerId)/activity")!
@@ -71,10 +172,6 @@ public struct Account: Codable {
         URL(string: "https://rbaccess.rogersbank.com/issuing/digital/account/\(accountId)/customer/\(customer.customerId)/estatement/\(statement.statementId)/view")!
     }
 
-    /// Download a statement
-    /// - Parameters:
-    ///   - statement: the statement to download
-    ///   - completion: completion handler, called with either a temporary URL to the downloaded file or a DownloadError
     public func downloadStatement(statement: Statement, completion: @escaping (Result<URL, DownloadError>) -> Void) {
         var request = URLRequest(url: statementDownloadURL(statement: statement))
         request.httpMethod = "GET"
@@ -101,9 +198,6 @@ public struct Account: Codable {
         task.resume()
     }
 
-    /// Search Statements
-    /// - Parameters:
-    ///   - completion: completion handler, called with either the Statements or a DownloadError
     public func searchStatements(completion: @escaping (Result<[Statement], DownloadError>) -> Void) {
         var request = URLRequest(url: statementSearchURL)
         request.httpMethod = "GET"
@@ -138,10 +232,6 @@ public struct Account: Codable {
         task.resume()
     }
 
-    /// Downloads the transactions
-    /// - Parameters:
-    ///   - statementNumber: number of the statement for which the transactions should be downloaded, with 0 mean current period, 1 means last statement, ...
-    ///   - completion: completion handler, called with either the Transactions or a DownloadError
     public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
         guard statementNumber >= 0 && cycleDates.count >= statementNumber else {
             completion(.failure(DownloadError.invalidStatementNumber(statementNumber)))

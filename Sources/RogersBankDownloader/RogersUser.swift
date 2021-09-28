@@ -4,7 +4,33 @@ import FoundationNetworking
 #endif
 
 /// An online user account
-public struct User: Codable {
+public protocol User {
+
+    /// User name used to login
+    var userName: String { get }
+    /// Credit Card Accounts the user has access to
+    var accounts: [Account] { get }
+    /// Authenticated
+    var authenticated: Bool { get }
+
+    /// Login and load a user account
+    /// - Parameters:
+    ///   - username: user name
+    ///   - password: password
+    ///   - deviceId: device id to skip 2FA
+    ///   - deviceInfo: device info to skip 2FA
+    ///   - completion: completion handler, returns the User or a Download Error
+    static func load(username: String, password: String, deviceId: String, deviceInfo: String, completion: @escaping (Result<User, DownloadError>) -> Void)
+
+}
+
+public struct RogersUser: User, Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case userName
+        case authenticated
+        case rogersAccounts = "accounts"
+    }
 
     private static var startURL = URL(string: "https://rbaccess.rogersbank.com/?product=ROGERSBRAND")!
     private static var authenticationURL = URL(string: "https://rbaccess.rogersbank.com/issuing/digital/authenticate/user")!
@@ -26,20 +52,14 @@ public struct User: Codable {
         return request
     }()
 
-    /// User name used to login
     public let userName: String
-    /// Credit Card Accounts the user has access to
-    public let accounts: [Account]
-    /// Authenticated
     public let authenticated: Bool
+    private let rogersAccounts: [RogersAccount]
 
-    /// Login and load a user account
-    /// - Parameters:
-    ///   - username: user name
-    ///   - password: password
-    ///   - deviceId: device id to skip 2FA
-    ///   - deviceInfo: device info to skip 2FA
-    ///   - completion: completion handler, returns the User or a Download Error
+    public var accounts: [Account] {
+        rogersAccounts
+    }
+
     public static func load(username: String, password: String, deviceId: String, deviceInfo: String, completion: @escaping (Result<User, DownloadError>) -> Void) {
         sendStartRequest {
             if let error = $0 {
@@ -111,7 +131,7 @@ public struct User: Codable {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                let user = try decoder.decode(User.self, from: data)
+                let user = try decoder.decode(RogersUser.self, from: data)
                 completion(.success(user))
             } catch {
                 completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
