@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ActivityCategory Enumeration Reference</title>
+    <title>Merchant Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/ActivityCategory" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/Merchant" class="dashAnchor"></a>
 
-    <a title="ActivityCategory Enumeration Reference"></a>
+    <a title="Merchant Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -42,7 +42,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RogersBankDownloader Reference</a>
       <img class="carat" src="../img/carat.png" />
-      ActivityCategory Enumeration Reference
+      Merchant Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -114,18 +114,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>ActivityCategory</h1>
+            <h1>Merchant</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ActivityCategory</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Merchant</span></code></pre>
 
                 </div>
               </div>
-            <p>Categorization for a credit card transaction</p>
+            <p>Merchant</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L112-L121">Show on GitHub</a>
+                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L18-L29">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -137,9 +137,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader16ActivityCategoryO8purchaseyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/purchase" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader16ActivityCategoryO8purchaseyA2CmF">purchase</a>
+                    <a name="/s:20RogersBankDownloader8MerchantP4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader8MerchantP4nameSSvp">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -147,19 +147,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A Purchase, inclduing a refund</p>
+                        <p>Name</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">purchase</span> <span class="o">=</span> <span class="s">"PURCHASE"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L114">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -167,9 +167,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader16ActivityCategoryO7paymentyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/payment" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader16ActivityCategoryO7paymentyA2CmF">payment</a>
+                    <a name="/s:20RogersBankDownloader8MerchantP12categoryCodeSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/categoryCode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader8MerchantP12categoryCodeSSSgvp">categoryCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -177,19 +177,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A Payment towards the balance</p>
+                        <p>4 digit Merchant Category Code from the payment netrowk</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">payment</span> <span class="o">=</span> <span class="s">"PAYMENT"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">categoryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L116">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -197,9 +197,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader16ActivityCategoryO16tokenAuthRequestyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/tokenAuthRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader16ActivityCategoryO16tokenAuthRequestyA2CmF">tokenAuthRequest</a>
+                    <a name="/s:20RogersBankDownloader8MerchantP19categoryDescriptionSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/categoryDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader8MerchantP19categoryDescriptionSSSgvp">categoryDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -207,19 +207,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A pre authorization for a purchase</p>
+                        <p>Description for the Merchant Category from the payment netrowk</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">tokenAuthRequest</span> <span class="o">=</span> <span class="s">"Token Auth Request"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">categoryDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L118">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -227,9 +227,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader16ActivityCategoryO16mailOrPhoneOrderyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/mailOrPhoneOrder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader16ActivityCategoryO16mailOrPhoneOrderyA2CmF">mailOrPhoneOrder</a>
+                    <a name="/s:20RogersBankDownloader8MerchantP8categorySSvp"></a>
+                    <a name="//apple_ref/swift/Property/category" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader8MerchantP8categorySSvp">category</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,19 +237,49 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An authorization for an mail or phone order</p>
+                        <p>Broad category name, used for the icons on the site</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">mailOrPhoneOrder</span> <span class="o">=</span> <span class="s">"Mail or Phone Order"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">category</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L120">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:20RogersBankDownloader8MerchantP7addressAA7Address_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/address" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader8MerchantP7addressAA7Address_pSgvp">address</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Address of the merchant</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">address</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Address.html">Address</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
