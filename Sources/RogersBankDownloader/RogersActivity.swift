@@ -109,15 +109,15 @@ public enum ActivityStatus: String, Codable {
 }
 
 /// Categorization for a credit card transaction
-public enum ActivityCategory: String, Codable {
+public enum ActivityCategory: String {
     /// A Purchase, inclduing a refund
-    case purchase = "PURCHASE"
+    case purchase = "purchase"
     /// A Payment towards the balance
-    case payment = "PAYMENT"
+    case payment = "payment"
     /// A pre authorization for a purchase
-    case tokenAuthRequest = "Token Auth Request"
+    case tokenAuthRequest = "token auth request"
     /// An authorization for an mail or phone order
-    case mailOrPhoneOrder = "Mail or Phone Order"
+    case mailOrPhoneOrder = "mail or phone order"
 }
 
 struct RogersCustomer: Customer, Codable {
@@ -229,5 +229,11 @@ struct RogersActivity: Activity, Codable {
     }
     var foreign: ForeignCurrency? {
         rogersForeignCurrency
+    }
+}
+
+extension ActivityCategory: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try ActivityCategory(rawValue: decoder.singleValueContainer().decode(RawValue.self).lowercased())!
     }
 }
