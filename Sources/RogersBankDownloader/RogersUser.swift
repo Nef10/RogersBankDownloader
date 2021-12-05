@@ -131,7 +131,7 @@ public struct RogersUser: User, Codable {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                let user = try decoder.decode(RogersUser.self, from: data)
+                let user = try decoder.decode(Self.self, from: data)
                 completion(.success(user))
             } catch {
                 completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
