@@ -104,6 +104,12 @@ public struct RogersAccount: Account, Codable {
         return dateFormatter
     }()
 
+    private static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(Self.dateFormatter)
+        return decoder
+    }()
+
     public let accountId: String
     public let accountType: String
     public let paymentStatus: String
@@ -220,9 +226,7 @@ public struct RogersAccount: Account, Codable {
                 return
             }
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(Self.dateFormatter)
-                let statements = try decoder.decode(Statements.self, from: data)
+                let statements = try Self.decoder.decode(Statements.self, from: data)
                 completion(.success(statements.monthlyStatements))
             } catch {
                 completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
@@ -233,6 +237,10 @@ public struct RogersAccount: Account, Codable {
     }
 
     public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
+        downloadActivities(statementNumber: statementNumber, retryAttempt: 0, completion: completion)
+    }
+
+    public func downloadActivities(statementNumber: Int, retryAttempt: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
         guard statementNumber >= 0 && cycleDates.count >= statementNumber else {
             completion(.failure(DownloadError.invalidStatementNumber(statementNumber)))
             return
@@ -258,17 +266,18 @@ public struct RogersAccount: Account, Codable {
                 return
             }
             guard httpResponse.statusCode == 200 else {
-                completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                if retryAttempt < 2 {
+                    downloadActivities(statementNumber: statementNumber, retryAttempt: retryAttempt + 1, completion: completion)
+                } else {
+                    completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                }
                 return
             }
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(Self.dateFormatter)
-                let activities = try decoder.decode(Activities.self, from: data)
+                let activities = try Self.decoder.decode(Activities.self, from: data)
                 completion(.success(activities.activities ?? []))
             } catch {
                 completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
-                return
             }
         }
         task.resume()
