@@ -233,6 +233,10 @@ public struct RogersAccount: Account, Codable {
     }
 
     public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
+        downloadActivities(statementNumber: statementNumber, retryAttempt: 0, completion: completion)
+    }
+
+    public func downloadActivities(statementNumber: Int, retryAttempt: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
         guard statementNumber >= 0 && cycleDates.count >= statementNumber else {
             completion(.failure(DownloadError.invalidStatementNumber(statementNumber)))
             return
@@ -258,7 +262,11 @@ public struct RogersAccount: Account, Codable {
                 return
             }
             guard httpResponse.statusCode == 200 else {
-                completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                if retryAttempt < 2 {
+                    downloadActivities(statementNumber: statementNumber, retryAttempt: retryAttempt + 1, completion: completion)
+                } else {
+                    completion(.failure(DownloadError.httpError(error: "Status code \(httpResponse.statusCode)")))
+                }
                 return
             }
             do {
