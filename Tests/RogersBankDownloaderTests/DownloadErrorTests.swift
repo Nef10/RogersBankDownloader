@@ -9,9 +9,9 @@ final class DownloadErrorTests: XCTestCase {
             "The server response contained invalid JSON: ABC"
         )
         XCTAssertEqual(
-            "\(DownloadError.invalidParameters(parameters: ["a": "b", "c": "d"]).localizedDescription)",
+            "\(DownloadError.invalidParameters(parameters: ["a": "b"]).localizedDescription)",
             """
-            The give parameters could not be converted to JSON: ["c": "d", "a": "b"]
+            The give parameters could not be converted to JSON: ["a": "b"]
             """
         )
          XCTAssertEqual(
