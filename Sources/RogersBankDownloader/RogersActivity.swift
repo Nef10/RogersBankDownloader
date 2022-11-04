@@ -43,11 +43,11 @@ public protocol Address {
 /// Info about a transaction in an foreign currency
 public protocol ForeignCurrency {
     /// Amount of fee paid
-    var exchangeFee: Amount { get }
+    var exchangeFee: Amount? { get }
     /// Conversion rate after embedding the exchange fee
-    var conversionMarkupRate: Float { get }
+    var conversionMarkupRate: Float? { get }
     /// Official conversion rate
-    var conversionRate: Float { get }
+    var conversionRate: Float? { get }
     /// Amount in foreign currency
     var originalAmount: Amount { get }
 }
@@ -165,12 +165,12 @@ struct RogersForeignCurrency: ForeignCurrency, Codable {
         case rogersOriginalAmount = "originalAmount"
     }
 
-    let conversionMarkupRate: Float
-    let conversionRate: Float
-    private let rogersExchangeFee: RogersAmount
+    let conversionMarkupRate: Float?
+    let conversionRate: Float?
+    private let rogersExchangeFee: RogersAmount?
     private let rogersOriginalAmount: RogersAmount
 
-    var exchangeFee: Amount {
+    var exchangeFee: Amount? {
         rogersExchangeFee
     }
     var originalAmount: Amount {
