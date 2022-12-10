@@ -253,16 +253,11 @@ public struct RogersAccount: Account, Codable {
         request.httpMethod = "GET"
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                if let error = error {
-                    completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
-                } else {
-                    completion(.failure(DownloadError.noDataReceived))
+            let processedResponse = URLTaskHelper.processResponse(data: data, response: response, error: error)
+            guard case let .success((data, httpResponse)) = processedResponse else {
+                if case let .failure(error) = processedResponse {
+                    completion(.failure(error))
                 }
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(DownloadError.httpError(error: "No HTTPURLResponse")))
                 return
             }
             guard httpResponse.statusCode == 200 else {
@@ -273,14 +268,18 @@ public struct RogersAccount: Account, Codable {
                 }
                 return
             }
-            do {
-                let activities = try Self.decoder.decode(Activities.self, from: data)
-                completion(.success(activities.activities ?? []))
-            } catch {
-                completion(.failure(DownloadError.invalidJson(error: String(describing: error))))
-            }
+            completion(parseData(data))
         }
         task.resume()
+    }
+
+    private func parseData(_ data: Data) -> Result<[Activity], DownloadError> {
+        do {
+            let activities = try Self.decoder.decode(Activities.self, from: data)
+            return .success(activities.activities ?? [])
+        } catch {
+            return .failure(DownloadError.invalidJson(error: String(describing: error)))
+        }
     }
 
 }

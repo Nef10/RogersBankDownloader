@@ -112,16 +112,11 @@ public struct RogersUser: User, Codable {
         }
 
         let task = URLSession.shared.uploadTask(with: authenticationRequest, from: jsonData) { data, response, error in
-            guard let data = data else {
-                if let error = error {
-                    completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
-                } else {
-                    completion(.failure(DownloadError.noDataReceived))
+            let processedResponse = URLTaskHelper.processResponse(data: data, response: response, error: error)
+            guard case let .success((data, httpResponse)) = processedResponse else {
+                if case let .failure(error) = processedResponse {
+                    completion(.failure(error))
                 }
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(DownloadError.httpError(error: "No HTTPURLResponse")))
                 return
             }
             guard httpResponse.statusCode == 200 else {
