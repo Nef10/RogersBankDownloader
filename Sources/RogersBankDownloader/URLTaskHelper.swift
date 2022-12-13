@@ -5,8 +5,8 @@ import FoundationNetworking
 
 enum URLTaskHelper {
     static func processResponse(data: Data?, response: URLResponse?, error: Error?) -> Result<(Data, HTTPURLResponse), DownloadError> {
-        guard let data = data else {
-            if let error = error {
+        guard let data else {
+            if let error {
                 return(.failure(DownloadError.httpError(error: error.localizedDescription)))
             } else {
                 return(.failure(DownloadError.noDataReceived))

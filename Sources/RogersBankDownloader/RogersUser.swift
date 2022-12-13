@@ -85,7 +85,7 @@ public struct RogersUser: User, Codable {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard data != nil else {
-                if let error = error {
+                if let error {
                     completion(DownloadError.httpError(error: error.localizedDescription))
                 } else {
                     completion(DownloadError.noDataReceived)
