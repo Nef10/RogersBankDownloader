@@ -183,8 +183,8 @@ public struct RogersAccount: Account, Codable {
         request.httpMethod = "GET"
 
         let task = URLSession.shared.downloadTask(with: request) { url, response, error in
-            guard let url = url else {
-                if let error = error {
+            guard let url else {
+                if let error {
                     completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
                 } else {
                     completion(.failure(DownloadError.noDataReceived))
@@ -209,8 +209,8 @@ public struct RogersAccount: Account, Codable {
         request.httpMethod = "GET"
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                if let error = error {
+            guard let data else {
+                if let error {
                     completion(.failure(DownloadError.httpError(error: error.localizedDescription)))
                 } else {
                     completion(.failure(DownloadError.noDataReceived))
