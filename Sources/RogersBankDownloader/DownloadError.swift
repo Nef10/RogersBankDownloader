@@ -12,6 +12,8 @@ public enum DownloadError: Error {
     case noDataReceived
     /// When trying to download transactions from a non existing statement
     case invalidStatementNumber(_ number: Int)
+    /// When parsing a transaction failed because the activity category is not recognized
+    case unkownActivityCategory(_ category: String)
 }
 
 extension DownloadError: LocalizedError {
@@ -27,6 +29,8 @@ extension DownloadError: LocalizedError {
             return "No data was received from the server"
         case let .invalidStatementNumber(number):
             return "\(number) is not a valid statement number to download"
+        case let .unkownActivityCategory(category):
+            return "Received unknown activity category: \(category)"
         }
     }
 }
