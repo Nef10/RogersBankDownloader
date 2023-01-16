@@ -118,6 +118,8 @@ public enum ActivityCategory: String {
     case tokenAuthRequest = "token auth request"
     /// An authorization for an mail or phone order
     case mailOrPhoneOrder = "mail or phone order"
+    /// Fee for going over the credit limit
+    case overlimitFee = "overlimit fee"
 }
 
 struct RogersCustomer: Customer, Codable {
