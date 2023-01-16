@@ -236,6 +236,9 @@ struct RogersActivity: Activity, Codable {
 
 extension ActivityCategory: Codable {
     public init(from decoder: Decoder) throws {
-        self = try ActivityCategory(rawValue: decoder.singleValueContainer().decode(RawValue.self).lowercased())!
+        guard let value = try ActivityCategory(rawValue: decoder.singleValueContainer().decode(RawValue.self).lowercased()) else {
+            throw try DownloadError.unkownActivityCategory(decoder.singleValueContainer().decode(RawValue.self).lowercased())
+        }
+        self = value
     }
 }
