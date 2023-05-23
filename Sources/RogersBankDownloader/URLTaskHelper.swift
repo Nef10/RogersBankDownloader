@@ -8,9 +8,8 @@ enum URLTaskHelper {
         guard let data else {
             if let error {
                 return(.failure(DownloadError.httpError(error: error.localizedDescription)))
-            } else {
-                return(.failure(DownloadError.noDataReceived))
             }
+            return(.failure(DownloadError.noDataReceived))
         }
         guard let httpResponse = response as? HTTPURLResponse else {
             return(.failure(DownloadError.httpError(error: "No HTTPURLResponse")))
