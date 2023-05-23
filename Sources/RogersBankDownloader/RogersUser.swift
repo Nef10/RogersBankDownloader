@@ -65,16 +65,15 @@ public struct RogersUser: User, Codable {
             if let error = $0 {
                 completion(.failure(error))
                 return
-            } else {
-                let parameters = [
-                    "username": username,
-                    "password": password,
-                    "deviceId": deviceId,
-                    "deviceInfo": deviceInfo
-                ]
-                sendAuthenticationRequest(parameters: parameters) {
-                    completion($0)
-                }
+            }
+            let parameters = [
+                "username": username,
+                "password": password,
+                "deviceId": deviceId,
+                "deviceInfo": deviceInfo
+            ]
+            sendAuthenticationRequest(parameters: parameters) {
+                completion($0)
             }
         }
     }
