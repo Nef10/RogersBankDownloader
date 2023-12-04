@@ -35,7 +35,7 @@ public protocol Address {
     /// State or Province
     var stateProvince: String? { get }
     /// Postal / ZIP Code
-    var postalCode: String { get }
+    var postalCode: String? { get }
     /// ISO Country code
     var countryCode: String { get }
 }
@@ -154,7 +154,7 @@ struct RogersMerchant: Merchant, Codable {
 struct RogersAddress: Address, Codable {
     let city: String
     let stateProvince: String?
-    let postalCode: String
+    let postalCode: String?
     let countryCode: String
 }
 
