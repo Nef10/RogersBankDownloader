@@ -70,6 +70,7 @@ public protocol Account {
     func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void)
 }
 
+/// A Rogers credit card account
 public struct RogersAccount: Account, Codable {
 
     enum CodingKeys: String, CodingKey {
