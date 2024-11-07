@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ActivityType Enumeration Reference</title>
+    <title>RogersAuthenticatorDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/ActivityType" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/RogersAuthenticatorDelegate" class="dashAnchor"></a>
 
-    <a title="ActivityType Enumeration Reference"></a>
+    <a title="RogersAuthenticatorDelegate Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -42,9 +42,9 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RogersBankDownloader</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      <a class="breadcrumb" href="../Enums.html">Enumerations</a>
+      <a class="breadcrumb" href="../Protocols.html">Protocols</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      ActivityType Enumeration Reference
+      RogersAuthenticatorDelegate Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -133,18 +133,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>ActivityType</h1>
+            <h1>RogersAuthenticatorDelegate</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ActivityType</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RogersAuthenticatorDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Type of a credit card activity</p>
+            <p>Delegate for the <code><a href="../Classes/RogersAuthenticator.html">RogersAuthenticator</a></code></p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L96-L101">Show on GitHub</a>
+                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L25-L41">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -156,9 +156,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader12ActivityTypeO11transactionyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/transaction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader12ActivityTypeO11transactionyA2CmF">transaction</a>
+                    <a name="/s:20RogersBankDownloader0A21AuthenticatorDelegateP25selectTwoFactorPreferenceyAA0ghI0VSayAFGF"></a>
+                    <a name="//apple_ref/swift/Method/selectTwoFactorPreference(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader0A21AuthenticatorDelegateP25selectTwoFactorPreferenceyAA0ghI0VSayAFGF">selectTwoFactorPreference(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -166,19 +166,42 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A transaction which has been posted</p>
+                        <p>Select a way to do two factor authentication, e.g. email or text</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">transaction</span> <span class="o">=</span> <span class="s">"TRANS"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">selectTwoFactorPreference</span><span class="p">(</span><span class="n">_</span> <span class="nv">preferences</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs.html#/s:20RogersBankDownloader19TwoFactorPreferenceV">TwoFactorPreference</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs.html#/s:20RogersBankDownloader19TwoFactorPreferenceV">TwoFactorPreference</a></span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preferences</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>available preferences</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>selected preference from the argement to use</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L98">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -186,9 +209,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader12ActivityTypeO13authorizationyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/authorization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader12ActivityTypeO13authorizationyA2CmF">authorization</a>
+                    <a name="/s:20RogersBankDownloader0A21AuthenticatorDelegateP16getTwoFactorCodeSSyF"></a>
+                    <a name="//apple_ref/swift/Method/getTwoFactorCode()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader0A21AuthenticatorDelegateP16getTwoFactorCodeSSyF">getTwoFactorCode()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -196,19 +219,74 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A pre authorization which has not been posted</p>
+                        <p>Get the two factor code from the user</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">authorization</span> <span class="o">=</span> <span class="s">"AUTH"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getTwoFactorCode</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>two factor code</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L100">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L34">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:20RogersBankDownloader0A21AuthenticatorDelegateP12saveDeviceIdyySSF"></a>
+                    <a name="//apple_ref/swift/Method/saveDeviceId(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader0A21AuthenticatorDelegateP12saveDeviceIdyySSF">saveDeviceId(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Save the device id
+When the device id is saved and passed to the login function,
+the user might be able to skip entering a two factor code again</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveDeviceId</span><span class="p">(</span><span class="n">_</span> <span class="nv">deviceId</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>deviceId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>device id to save</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

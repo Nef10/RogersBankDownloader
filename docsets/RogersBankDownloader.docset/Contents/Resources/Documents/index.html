@@ -19,7 +19,7 @@
         <a class="header-link" href="index.html">
           RogersBankDownloader Docs
         </a>
-         (97% documented)
+         (98% documented)
       </p>
     
     
@@ -39,14 +39,20 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html">RogersBankDownloader Reference</a>
-      <img class="carat" src="img/carat.png" alt=""/>
-      RogersBankDownloader  Reference
+      <a class="breadcrumb" href="index.html">RogersBankDownloader</a>
     </p>
 
     <div class="content-wrapper">
       <nav class="navigation">
         <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RogersAuthenticator.html">RogersAuthenticator</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
@@ -80,6 +86,9 @@
                 <a class="nav-group-task-link" href="Protocols/Amount.html">Amount</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Authenticator.html">Authenticator</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
@@ -87,6 +96,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Merchant.html">Merchant</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RogersAuthenticatorDelegate.html">RogersAuthenticatorDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Statement.html">Statement</a>
@@ -105,6 +117,9 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/RogersUser.html">RogersUser</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs.html#/s:20RogersBankDownloader19TwoFactorPreferenceV">TwoFactorPreference</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -119,12 +134,12 @@
 <p><a href="https://github.com/Nef10/RogersBankDownloader/actions?query=workflow%3A%22CI%22"><img src="https://github.com/Nef10/RogersBankDownloader/workflows/CI/badge.svg?event=push" alt="CI Status"></a> <a href="https://nef10.github.io/RogersBankDownloader/"><img src="https://nef10.github.io/RogersBankDownloader/badge.svg" alt="Documentation percentage"></a> <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Nef10/RogersBankDownloader" alt="License: MIT"></a> <a href="https://github.com/Nef10/RogersBankDownloader/releases"><img src="https://img.shields.io/github/v/release/Nef10/RogersBankDownloader?label=SemVer&sort=semver" alt="Latest version"></a> <img src="https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-blue" alt="platforms supported: linux | macOS | iOS | watchOS | tvOS"> <img src="https://img.shields.io/badge/SPM-compatible-blue" alt="SPM compatible"></p>
 <h2 id='what' class='heading'>What</h2>
 
-<p>This is a small library to download transaction data for Rogers Bank Credit Cards. To authenticate it currently uses requires the <code>deviceId</code> and <code>deviceInfo</code> from a trusted device to skip the 2FA.</p>
+<p>This is a small library to download transaction data for Rogers Bank Credit Cards.</p>
 <h2 id='how' class='heading'>How</h2>
 
-<p>1) Obtain a deviceId with the matching deviceInfo by logging into the website and having a look at the network tab in the developer tools
-2) Call <code>User.load(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x&quot;, deviceInfo: &quot;x&quot;)</code>
-3) In the completion handler check that the login was successful: <code>if case let .success(user) = $0 {</code>
+<p>1) Create an instance of <code><a href="Classes/RogersAuthenticator.html">RogersAuthenticator</a></code> and set your delegate.
+2) Call <code>login(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x&quot;)</code> on it. If you don&rsquo;t have a deviceId, pass in nil, otherwise pass the one you received from the delegate after the last successful login.
+3) In the completion handler check that the login was successful: <code>if case let .success(user) = $0</code>
 4) <code>user</code> now contains the logged in user, which contains the accounts - these already contain info about the current balance, last statement amount, among other information
 5) If you want to download the transactions, e.g. call <code>user.accounts[0].downloadActivities(statementNumber: 0)</code> - if you have more than one account change the index accordingly - the <code>statementNumber</code> parameter indicates which statement period to download the transactions from, with 0 meaning the current period, 1 the last statement and so on.</p>
 
@@ -152,8 +167,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://github.com/Nef10" target="_blank" rel="external noopener">Nef10</a>. All rights reserved. (Last updated: 2023-12-04)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="https://github.com/Nef10" target="_blank" rel="external noopener">Nef10</a>. All rights reserved. (Last updated: 2024-11-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>

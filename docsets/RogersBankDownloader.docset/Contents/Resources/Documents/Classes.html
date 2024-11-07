@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RogersBankDownloader  Reference</title>
+    <title>Classes  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -11,8 +11,9 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
 
-    <a title="RogersBankDownloader  Reference"></a>
+    <a title="Classes  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -40,6 +41,8 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">RogersBankDownloader</a>
+      <img class="carat" src="img/carat.png" alt=""/>
+      Classes  Reference
     </p>
 
     <div class="content-wrapper">
@@ -128,41 +131,53 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            
-            <h1 id='rogersbankdownloader' class='heading'>RogersBankDownloader</h1>
-
-<p><a href="https://github.com/Nef10/RogersBankDownloader/actions?query=workflow%3A%22CI%22"><img src="https://github.com/Nef10/RogersBankDownloader/workflows/CI/badge.svg?event=push" alt="CI Status"></a> <a href="https://nef10.github.io/RogersBankDownloader/"><img src="https://nef10.github.io/RogersBankDownloader/badge.svg" alt="Documentation percentage"></a> <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Nef10/RogersBankDownloader" alt="License: MIT"></a> <a href="https://github.com/Nef10/RogersBankDownloader/releases"><img src="https://img.shields.io/github/v/release/Nef10/RogersBankDownloader?label=SemVer&sort=semver" alt="Latest version"></a> <img src="https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-blue" alt="platforms supported: linux | macOS | iOS | watchOS | tvOS"> <img src="https://img.shields.io/badge/SPM-compatible-blue" alt="SPM compatible"></p>
-<h2 id='what' class='heading'>What</h2>
-
-<p>This is a small library to download transaction data for Rogers Bank Credit Cards.</p>
-<h2 id='how' class='heading'>How</h2>
-
-<p>1) Create an instance of <code><a href="Classes/RogersAuthenticator.html">RogersAuthenticator</a></code> and set your delegate.
-2) Call <code>login(username: &quot;x&quot;, password: &quot;x,&quot;, deviceId: &quot;x&quot;)</code> on it. If you don&rsquo;t have a deviceId, pass in nil, otherwise pass the one you received from the delegate after the last successful login.
-3) In the completion handler check that the login was successful: <code>if case let .success(user) = $0</code>
-4) <code>user</code> now contains the logged in user, which contains the accounts - these already contain info about the current balance, last statement amount, among other information
-5) If you want to download the transactions, e.g. call <code>user.accounts[0].downloadActivities(statementNumber: 0)</code> - if you have more than one account change the index accordingly - the <code>statementNumber</code> parameter indicates which statement period to download the transactions from, with 0 meaning the current period, 1 the last statement and so on.</p>
-
-<p>Please also check out the complete documentation <a href="https://nef10.github.io/RogersBankDownloader/">here</a>.</p>
-<h2 id='usage' class='heading'>Usage</h2>
-
-<p>The library supports the Swift Package Manger, so simply add a dependency in your <code>Package.swift</code>:</p>
-<pre class="highlight plaintext"><code>.package(url: "https://github.com/Nef10/RogersBankDownloader.git", .exact(from: "X.Y.Z")),
-</code></pre>
-
-<p><em>Note: as per semantic versioning all versions changes &lt; 1.0.0 can be breaking, so please use <code>.exact</code> for now</em></p>
-<h2 id='limitations' class='heading'>Limitations</h2>
-
-<p>Please note that I developed this library for my own needs. As there is no offical API everything was reverse engineered and there may be a lot of bugs.</p>
-
-<p>Pull requests to fix bugs are otherwise enhance the library are very welcome.</p>
-<h2 id='copyright' class='heading'>Copyright</h2>
-
-<p>While my code is licensed under the <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/LICENSE">MIT License</a>, the source repository may include names or other trademarks of Rogers, Rogers Bank or other entities; potential usage restrictions for these elements still apply and are not touched by the software license. Same applies for the API design. I am in no way affilliated with Rogers Bank other than beeing customer.</p>
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
 
           </div>
         </section>
 
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:20RogersBankDownloader0A13AuthenticatorC"></a>
+                    <a name="//apple_ref/swift/Class/RogersAuthenticator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader0A13AuthenticatorC">RogersAuthenticator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class to authenticate with Rogers Bank</p>
+
+<p>Call <code>login</code> to authenticate and receive a <code><a href="Protocols/User.html">User</a></code> instance</p>
+
+                        <a href="Classes/RogersAuthenticator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RogersAuthenticator</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Authenticator.html">Authenticator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L75-L337">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
       </article>
     </div>

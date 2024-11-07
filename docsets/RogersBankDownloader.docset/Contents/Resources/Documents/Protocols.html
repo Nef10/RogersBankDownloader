@@ -20,7 +20,7 @@
         <a class="header-link" href="index.html">
           RogersBankDownloader Docs
         </a>
-         (97% documented)
+         (98% documented)
       </p>
     
     
@@ -40,7 +40,7 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html">RogersBankDownloader Reference</a>
+      <a class="breadcrumb" href="index.html">RogersBankDownloader</a>
       <img class="carat" src="img/carat.png" alt=""/>
       Protocols  Reference
     </p>
@@ -48,6 +48,14 @@
     <div class="content-wrapper">
       <nav class="navigation">
         <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RogersAuthenticator.html">RogersAuthenticator</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
@@ -81,6 +89,9 @@
                 <a class="nav-group-task-link" href="Protocols/Amount.html">Amount</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Authenticator.html">Authenticator</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
@@ -88,6 +99,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Merchant.html">Merchant</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RogersAuthenticatorDelegate.html">RogersAuthenticatorDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Statement.html">Statement</a>
@@ -105,6 +119,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/RogersUser.html">RogersUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs.html#/s:20RogersBankDownloader19TwoFactorPreferenceV">TwoFactorPreference</a>
               </li>
             </ul>
           </li>
@@ -344,6 +361,68 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:20RogersBankDownloader13AuthenticatorP"></a>
+                    <a name="//apple_ref/swift/Protocol/Authenticator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader13AuthenticatorP">Authenticator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol of the class for authenticating with Rogers Bank</p>
+
+                        <a href="Protocols/Authenticator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Authenticator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L7-L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:20RogersBankDownloader0A21AuthenticatorDelegateP"></a>
+                    <a name="//apple_ref/swift/Protocol/RogersAuthenticatorDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader0A21AuthenticatorDelegateP">RogersAuthenticatorDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate for the <code><a href="Classes/RogersAuthenticator.html">RogersAuthenticator</a></code></p>
+
+                        <a href="Protocols/RogersAuthenticatorDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RogersAuthenticatorDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L25-L41">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:20RogersBankDownloader9StatementP"></a>
                     <a name="//apple_ref/swift/Protocol/Statement" class="dashAnchor"></a>
                     <a class="token" href="#/s:20RogersBankDownloader9StatementP">Statement</a>
@@ -398,7 +477,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersUser.swift#L7-L25">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersUser.swift#L4-L13">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -411,8 +490,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://github.com/Nef10" target="_blank" rel="external noopener">Nef10</a>. All rights reserved. (Last updated: 2023-12-04)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="https://github.com/Nef10" target="_blank" rel="external noopener">Nef10</a>. All rights reserved. (Last updated: 2024-11-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>
