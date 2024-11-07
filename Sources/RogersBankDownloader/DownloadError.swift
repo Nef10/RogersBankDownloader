@@ -14,6 +14,10 @@ public enum DownloadError: Error {
     case invalidStatementNumber(_ number: Int)
     /// When parsing a transaction failed because the activity category is not recognized
     case unkownActivityCategory(_ category: String)
+    /// When generating a two factor authentication code fails
+    case twoFactorAuthenticationCodeGenerationFailed
+    /// When the delegate does not return a two factor preference (probably because the delegate is not set)
+    case noTwoFactorPreference
 }
 
 extension DownloadError: LocalizedError {
@@ -31,6 +35,10 @@ extension DownloadError: LocalizedError {
             return "\(number) is not a valid statement number to download"
         case let .unkownActivityCategory(category):
             return "Received unknown activity category: \(category)"
+        case .twoFactorAuthenticationCodeGenerationFailed:
+            return "Two-factor authentication code generation failed"
+        case .noTwoFactorPreference:
+            return "Could not get two-factor authentication preference"
         }
     }
 }
