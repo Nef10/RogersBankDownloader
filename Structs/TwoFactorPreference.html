@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ActivityStatus Enumeration Reference</title>
+    <title>TwoFactorPreference Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/ActivityStatus" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/TwoFactorPreference" class="dashAnchor"></a>
 
-    <a title="ActivityStatus Enumeration Reference"></a>
+    <a title="TwoFactorPreference Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -42,9 +42,9 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RogersBankDownloader</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      <a class="breadcrumb" href="../Enums.html">Enumerations</a>
+      <a class="breadcrumb" href="../Structs.html">Structures</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      ActivityStatus Enumeration Reference
+      TwoFactorPreference Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -133,18 +133,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>ActivityStatus</h1>
+            <h1>TwoFactorPreference</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ActivityStatus</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TwoFactorPreference</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                 </div>
               </div>
-            <p>Status of a credit card transaction</p>
+            <p>Two factor preference, e.g. email or text</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L104-L109">Show on GitHub</a>
+                <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L59-L66">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -156,9 +156,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader14ActivityStatusO8approvedyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/approved" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader14ActivityStatusO8approvedyA2CmF">approved</a>
+                    <a name="/s:20RogersBankDownloader19TwoFactorPreferenceV4typeSSvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader19TwoFactorPreferenceV4typeSSvp">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -166,19 +166,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The transaction has been approved and posted</p>
+                        <p>Type of the preference, e.g. email or text</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">approved</span> <span class="o">=</span> <span class="s">"APPROVED"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L106">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -186,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:20RogersBankDownloader14ActivityStatusO7pendingyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/pending" class="dashAnchor"></a>
-                    <a class="token" href="#/s:20RogersBankDownloader14ActivityStatusO7pendingyA2CmF">pending</a>
+                    <a name="/s:20RogersBankDownloader19TwoFactorPreferenceV5valueSSvp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:20RogersBankDownloader19TwoFactorPreferenceV5valueSSvp">value</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -196,19 +196,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The transaction is still pending</p>
+                        <p>Value of the preference, e.g. email address or phone number</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pending</span> <span class="o">=</span> <span class="s">"PENDING"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersActivity.swift#L108">Show on GitHub</a>
+                        <a href="https://github.com/Nef10/RogersBankDownloader/blob/main/Sources/RogersBankDownloader/RogersAuthenticator.swift#L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

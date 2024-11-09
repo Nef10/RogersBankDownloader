@@ -2,14 +2,7 @@
   "warnings": [
     {
       "file": "/Users/runner/work/RogersBankDownloader/RogersBankDownloader/Sources/RogersBankDownloader/RogersAccount.swift",
-      "line": 73,
-      "symbol": "RogersAccount",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/runner/work/RogersBankDownloader/RogersBankDownloader/Sources/RogersBankDownloader/RogersAccount.swift",
-      "line": 243,
+      "line": 244,
       "symbol": "RogersAccount.downloadActivities(statementNumber:retryAttempt:completion:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
