@@ -59,10 +59,10 @@ struct TwoFactorPreferences: Codable {
 public struct TwoFactorPreference: Codable {
 
     /// Type of the preference, e.g. email or text
-    let type: String
+    public let type: String
 
     /// Value of the preference, e.g. email address or phone number
-    let value: String
+    public let value: String
 }
 
 struct TwoFactorCodeGenerationResult: Codable {
