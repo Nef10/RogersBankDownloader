@@ -110,7 +110,7 @@ public enum ActivityStatus: String, Codable {
 
 /// Categorization for a credit card transaction
 public enum ActivityCategory: String {
-    /// A Purchase, inclduing a refund
+    /// A Purchase, including a refund
     case purchase = "purchase"
     /// A Payment towards the balance
     case payment = "payment"
@@ -120,6 +120,8 @@ public enum ActivityCategory: String {
     case mailOrPhoneOrder = "mail or phone order"
     /// Fee for going over the credit limit
     case overlimitFee = "overlimit fee"
+    /// Return, but different from refund
+    case merchantReturn = "merchant return"
 }
 
 struct RogersCustomer: Customer, Codable {
