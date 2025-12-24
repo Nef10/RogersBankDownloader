@@ -1,7 +1,7 @@
 import Foundation
 
 /// Errors which can happen when getting a Token
-public enum DownloadError: Error {
+public enum DownloadError: Error, Equatable {
     /// When the received data is not valid JSON
     case invalidJson(error: String)
     /// When the paramters could not be converted to JSON

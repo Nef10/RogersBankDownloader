@@ -124,7 +124,7 @@ public enum ActivityCategory: String {
     case merchantReturn = "merchant return"
 }
 
-struct RogersCustomer: Customer, Codable {
+struct RogersCustomer: Customer, Codable, Equatable {
     let customerId: String
     let cardLast4: String
     let customerType: String
@@ -132,7 +132,7 @@ struct RogersCustomer: Customer, Codable {
     let lastName: String
 }
 
-struct RogersMerchant: Merchant, Codable {
+struct RogersMerchant: Merchant, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -153,14 +153,14 @@ struct RogersMerchant: Merchant, Codable {
     }
 }
 
-struct RogersAddress: Address, Codable {
+struct RogersAddress: Address, Codable, Equatable {
     let city: String
     let stateProvince: String?
     let postalCode: String?
     let countryCode: String
 }
 
-struct RogersForeignCurrency: ForeignCurrency, Codable {
+struct RogersForeignCurrency: ForeignCurrency, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case rogersExchangeFee = "exchangeFee"
@@ -182,16 +182,16 @@ struct RogersForeignCurrency: ForeignCurrency, Codable {
     }
 }
 
-struct RogersAmount: Amount, Codable {
+struct RogersAmount: Amount, Codable, Equatable {
     let value: String
     let currency: String
 }
 
-struct Activities: Codable {
+struct Activities: Codable, Equatable {
     let activities: [RogersActivity]? // swiftlint:disable:this discouraged_optional_collection
 }
 
-struct RogersActivity: Activity, Codable {
+struct RogersActivity: Activity, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case referenceNumber
