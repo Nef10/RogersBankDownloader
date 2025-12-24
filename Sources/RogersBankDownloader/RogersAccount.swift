@@ -6,7 +6,7 @@ import FoundationNetworking
 /// A credit card account
 public protocol Account {
     /// Customer
-    var customer: Customer { get }
+    var customer: any Customer { get }
     /// Internal ID
     var accountId: String { get }
     /// Account type, e.g. Personal
@@ -32,23 +32,23 @@ public protocol Account {
     /// List of past statement dates
     var cycleDates: [Date] { get }
     /// Current balance
-    var currentBalance: Amount { get }
+    var currentBalance: any Amount { get }
     /// Balance on the last Statement
-    var statementBalance: Amount { get }
+    var statementBalance: any Amount { get }
     /// Amount which is still due for the statement
-    var statementDueAmount: Amount { get }
+    var statementDueAmount: any Amount { get }
     /// Credit limit
-    var creditLimit: Amount { get }
+    var creditLimit: any Amount { get }
     /// Amount charged since the last statement
-    var purchasesSinceLastCycle: Amount? { get }
+    var purchasesSinceLastCycle: (any Amount)? { get }
     /// Amount of the last payment
-    var lastPayment: Amount { get }
+    var lastPayment: any Amount { get }
     /// Remaining credit limit
-    var realtimeBalance: Amount { get }
+    var realtimeBalance: any Amount { get }
     /// Cash Advance available
-    var cashAvailable: Amount { get }
+    var cashAvailable: any Amount { get }
     /// Cash Advance limit
-    var cashLimit: Amount { get }
+    var cashLimit: any Amount { get }
     /// Multi Card
     var multiCard: Bool { get }
 
@@ -67,7 +67,7 @@ public protocol Account {
     /// - Parameters:
     ///   - statementNumber: number of the statement for which the transactions should be downloaded, with 0 mean current period, 1 means last statement, ...
     ///   - completion: completion handler, called with either the Transactions or a DownloadError
-    func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void)
+    func downloadActivities(statementNumber: Int, completion: @escaping (Result<[any Activity], DownloadError>) -> Void)
 }
 
 /// A Rogers credit card account
@@ -135,35 +135,35 @@ public struct RogersAccount: Account, Codable {
     private let rogersCashLimit: RogersAmount
     private let rogersCustomer: RogersCustomer
 
-    public var customer: Customer {
+    public var customer: any Customer {
         rogersCustomer
     }
 
-    public var statementBalance: Amount {
+    public var statementBalance: any Amount {
         rogersStatementBalance
     }
-    public var currentBalance: Amount {
+    public var currentBalance: any Amount {
         rogersCurrentBalance
     }
-    public var statementDueAmount: Amount {
+    public var statementDueAmount: any Amount {
         rogersStatementDueAmount
     }
-    public var creditLimit: Amount {
+    public var creditLimit: any Amount {
         rogersCreditLimit
     }
-    public var purchasesSinceLastCycle: Amount? {
+    public var purchasesSinceLastCycle: (any Amount)? {
         rogersPurchasesSinceLastCycle
     }
-    public var lastPayment: Amount {
+    public var lastPayment: any Amount {
         rogersLastPayment
     }
-    public var realtimeBalance: Amount {
+    public var realtimeBalance: any Amount {
         rogersRealtimeBalance
     }
-    public var cashLimit: Amount {
+    public var cashLimit: any Amount {
         rogersCashLimit
     }
-    public var cashAvailable: Amount {
+    public var cashAvailable: any Amount {
         rogersCashAvailable
     }
 
@@ -237,11 +237,11 @@ public struct RogersAccount: Account, Codable {
         task.resume()
     }
 
-    public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
+    public func downloadActivities(statementNumber: Int, completion: @escaping (Result<[any Activity], DownloadError>) -> Void) {
         downloadActivities(statementNumber: statementNumber, retryAttempt: 0, completion: completion)
     }
 
-    public func downloadActivities(statementNumber: Int, retryAttempt: Int, completion: @escaping (Result<[Activity], DownloadError>) -> Void) {
+    public func downloadActivities(statementNumber: Int, retryAttempt: Int, completion: @escaping (Result<[any Activity], DownloadError>) -> Void) {
         guard statementNumber >= 0 && cycleDates.count >= statementNumber else {
             completion(.failure(DownloadError.invalidStatementNumber(statementNumber)))
             return
@@ -274,7 +274,7 @@ public struct RogersAccount: Account, Codable {
         task.resume()
     }
 
-    private func parseData(_ data: Data) -> Result<[Activity], DownloadError> {
+    private func parseData(_ data: Data) -> Result<[any Activity], DownloadError> {
         do {
             let activities = try Self.decoder.decode(Activities.self, from: data)
             return .success(activities.activities ?? [])

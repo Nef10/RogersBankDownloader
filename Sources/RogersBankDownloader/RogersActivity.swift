@@ -1,7 +1,7 @@
 import Foundation
 
 /// Customer of the bank
-public protocol Customer {
+public protocol Customer: Equatable {
     /// Internal ID
     var customerId: String { get }
     /// Last 4 digits of the credit card
@@ -15,7 +15,7 @@ public protocol Customer {
 }
 
 /// Merchant
-public protocol Merchant {
+public protocol Merchant: Equatable {
     /// Name
     var name: String { get }
     /// 4 digit Merchant Category Code from the payment network
@@ -25,11 +25,11 @@ public protocol Merchant {
     /// Broad category name, used for the icons on the site
     var category: String { get }
     /// Address of the merchant
-    var address: Address? { get }
+    var address: (any Address)? { get }
 }
 
 /// An Address
-public protocol Address {
+public protocol Address: Equatable {
     /// City - for online transactions often not a city
     var city: String { get }
     /// State or Province
@@ -41,19 +41,19 @@ public protocol Address {
 }
 
 /// Info about a transaction in an foreign currency
-public protocol ForeignCurrency {
+public protocol ForeignCurrency: Equatable {
     /// Amount of fee paid
-    var exchangeFee: Amount? { get }
+    var exchangeFee: (any Amount)? { get }
     /// Conversion rate after embedding the exchange fee
     var conversionMarkupRate: Float? { get }
     /// Official conversion rate
     var conversionRate: Float? { get }
     /// Amount in foreign currency
-    var originalAmount: Amount { get }
+    var originalAmount: any Amount { get }
 }
 
 /// An amount of money
-public protocol Amount {
+public protocol Amount: Equatable {
     /// Numeric value
     var value: String { get }
     /// ISO Currency code
@@ -61,13 +61,13 @@ public protocol Amount {
 }
 
 /// An activity on the credit card, like a authorization, transactions or payment
-public protocol Activity {
+public protocol Activity: Equatable {
     /// Reference number for posted transactions
     var referenceNumber: String? { get }
     /// Activity type, e.g. Transaction or Authorization
     var activityType: ActivityType { get }
     /// Amount charged - if transaction was in foreign currency, see foreign for the original amount
-    var amount: Amount { get }
+    var amount: any Amount { get }
     /// Status of the transaction, e.g. approved or pending
     var activityStatus: ActivityStatus { get }
     /// Category, e.g. Purchase, Payment for Authorization
@@ -77,9 +77,9 @@ public protocol Activity {
     /// Card Number with all but the last 4 digits replaced with *
     var cardNumber: String { get }
     /// Merchant
-    var merchant: Merchant { get }
+    var merchant: any Merchant { get }
     /// Foreign currency information if the transaction was in one
-    var foreign: ForeignCurrency? { get }
+    var foreign: (any ForeignCurrency)? { get }
     /// Date of the transaction
     var date: Date { get }
     /// Activity Category Code
@@ -124,7 +124,7 @@ public enum ActivityCategory: String {
     case merchantReturn = "merchant return"
 }
 
-struct RogersCustomer: Customer, Codable {
+struct RogersCustomer: Customer, Codable, Equatable {
     let customerId: String
     let cardLast4: String
     let customerType: String
@@ -132,7 +132,7 @@ struct RogersCustomer: Customer, Codable {
     let lastName: String
 }
 
-struct RogersMerchant: Merchant, Codable {
+struct RogersMerchant: Merchant, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -148,19 +148,19 @@ struct RogersMerchant: Merchant, Codable {
     let category: String
     private let rogersAddress: RogersAddress?
 
-    var address: Address? {
+    var address: (any Address)? {
         rogersAddress
     }
 }
 
-struct RogersAddress: Address, Codable {
+struct RogersAddress: Address, Codable, Equatable {
     let city: String
     let stateProvince: String?
     let postalCode: String?
     let countryCode: String
 }
 
-struct RogersForeignCurrency: ForeignCurrency, Codable {
+struct RogersForeignCurrency: ForeignCurrency, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case rogersExchangeFee = "exchangeFee"
@@ -174,15 +174,15 @@ struct RogersForeignCurrency: ForeignCurrency, Codable {
     private let rogersExchangeFee: RogersAmount?
     private let rogersOriginalAmount: RogersAmount
 
-    var exchangeFee: Amount? {
+    var exchangeFee: (any Amount)? {
         rogersExchangeFee
     }
-    var originalAmount: Amount {
+    var originalAmount: any Amount {
         rogersOriginalAmount
     }
 }
 
-struct RogersAmount: Amount, Codable {
+struct RogersAmount: Amount, Codable, Equatable {
     let value: String
     let currency: String
 }
@@ -191,7 +191,7 @@ struct Activities: Codable {
     let activities: [RogersActivity]? // swiftlint:disable:this discouraged_optional_collection
 }
 
-struct RogersActivity: Activity, Codable {
+struct RogersActivity: Activity, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case referenceNumber
@@ -225,13 +225,13 @@ struct RogersActivity: Activity, Codable {
     private let rogersForeignCurrency: RogersForeignCurrency?
     private let rogersAmount: RogersAmount
 
-    var amount: Amount {
+    var amount: any Amount {
         rogersAmount
     }
-    var merchant: Merchant {
+    var merchant: any Merchant {
         rogersMerchant
     }
-    var foreign: ForeignCurrency? {
+    var foreign: (any ForeignCurrency)? {
         rogersForeignCurrency
     }
 }
