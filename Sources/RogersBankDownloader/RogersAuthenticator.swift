@@ -303,7 +303,7 @@ public class RogersAuthenticator: Authenticator {
     private func loginWithTwoFactorAuthenticationCode(completion: @escaping (Result<User, DownloadError>) -> Void) {
         var json = parameters
         json.removeValue(forKey: "password")
-        json["oneTimePassCode"] = self.delegate?.getTwoFactorCode()
+        json["oneTimePassCode"] = delegate?.getTwoFactorCode()
         guard let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []) else {
             completion(.failure(DownloadError.invalidParameters(parameters: parameters)))
             return
